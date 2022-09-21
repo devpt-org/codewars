@@ -6,7 +6,7 @@ WORKDIR /app
 ADD gems.rb gems.locked ./
 RUN bundle
 
-ADD main.rb ./
+ADD *.rb ./
 ADD index.html.erb ./
 ADD config.ru ./
 
