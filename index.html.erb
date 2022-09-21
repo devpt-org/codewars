@@ -1,0 +1,65 @@
+<html>
+  <head>
+  <style>
+  * {
+    font-family: Lato;
+    font-size: 14px;
+  }
+
+  body {
+    background-color: #262729;
+    color: rgba(255, 255, 255);
+  }
+
+  a { color: #c0c0c0; text-decoration: none; }
+  a:hover { color: #6795de; }
+
+  td.solved, td.unsolved { text-align: center; }
+
+  section {
+    max-width: 600px;
+    background-color: #222327;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  </style>
+  </head>
+  <body>
+    <section>
+      <h1>DevPT codewars leaderboard</h1>
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <td></td>
+            <% challenges.each do |challenge| %>
+              <% if challenge.kata %>
+                <td><a href="https://codewars.com/kata/<%= challenge.kata %>"><%= challenge.year %>w<%= challenge.week %></a></td>
+              <% else %>
+                <td><%= challenge.year %>w<%= challenge.week %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.each do |user| %>
+            <tr>
+              <td><a href="https://codewars.com/users/<%= user.username %>"><%= user.username %></a></td>
+              <td><%= user.score(challenges) %></td>
+              <% user.points(challenges).each do |points| %>
+                <% if points == 3 %>
+                  <td class='solved'>✔</td>
+                <% elsif points == 1 %>
+                  <td class='solved'>✓</td>
+                <% elsif points.nil? %>
+                  <td class='unsolved'>-</td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>
