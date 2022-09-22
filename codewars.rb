@@ -1,3 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2022 Hugo Peixoto <hugo.peixoto@gmail.com>
+
+require 'json'
+require 'net/http'
+
 module Codewars
   def self.profile(username)
     JSON.parse(Net::HTTP::get(URI("https://www.codewars.com/api/v1/users/#{username}")))

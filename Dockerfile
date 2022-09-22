@@ -10,4 +10,4 @@ ADD *.rb ./
 ADD index.html.erb ./
 ADD config.ru ./
 
-CMD ["puma"]
+CMD ["puma", "-p", "8080"]

@@ -1,10 +1,9 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# SPDX-FileCopyrightText: 2022 Hugo Peixoto <hugo.peixoto@gmail.com>
+
 require 'sinatra'
-require 'pg'
-require 'net/http'
-require 'active_record'
 
 require './database.rb'
-require './codewars.rb'
 require './models.rb'
 
 User.all.each(&:refresh!)
