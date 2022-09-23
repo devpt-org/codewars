@@ -16,3 +16,27 @@ get '/' do
     .new(File.read("index.html.erb"), trim_mode: "<>-")
     .result_with_hash(users: users, challenges: challenges)
 end
+
+get '/index.json' do
+  content_type 'application/json'
+
+  challenges = Challenge.all
+  users = User.all.sort_by { |u| -u.score(challenges) }
+
+  {
+    challenges: challenges.map do |c|
+      {
+        kata: "https://codewars.com/kata/#{c.kata}",
+        year: challenge.year,
+        week: challenge.week,
+      }
+    end,
+    users: users.map do |u|
+      {
+        username: u.username,
+        score: u.score(challenges),
+        points: u.points(challenges),
+      }
+    end,
+  }.to_json
+end
