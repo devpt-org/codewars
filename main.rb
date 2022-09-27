@@ -27,8 +27,8 @@ get '/index.json' do
     challenges: challenges.map do |c|
       {
         kata: "https://codewars.com/kata/#{c.kata}",
-        year: challenge.year,
-        week: challenge.week,
+        year: c.year,
+        week: c.week,
       }
     end,
     users: users.map do |u|
