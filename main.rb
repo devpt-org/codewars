@@ -6,8 +6,6 @@ require 'sinatra'
 require './database.rb'
 require './models.rb'
 
-User.all.each(&:refresh!)
-
 get '/' do
   challenges = Challenge.all
   users = User.all.sort_by { |u| -u.score(challenges) }
@@ -39,4 +37,12 @@ get '/index.json' do
       }
     end,
   }.to_json
+end
+
+post '/refresh' do
+  halt 403 if request.env["HTTP_AUTHORIZATION"] != ENV["TOKEN"]
+
+  User.all.each(&:refresh!)
+
+  "ok".to_json
 end
