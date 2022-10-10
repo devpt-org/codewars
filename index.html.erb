@@ -53,7 +53,7 @@
               <td><%= user.score(challenges) %></td>
               <% user.points(challenges).each do |points| %>
                 <% if points == 3 %>
-                  <td class='solved'>✔</td>
+                  <td class='solved'>✔✔</td>
                 <% elsif points == 1 %>
                   <td class='solved'>✓</td>
                 <% elsif points.nil? %>
